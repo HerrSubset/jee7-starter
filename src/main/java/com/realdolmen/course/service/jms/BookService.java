@@ -1,5 +1,10 @@
 package com.realdolmen.course.service.jms;
 
+import com.realdolmen.course.domain.Person;
+import com.realdolmen.course.service.PersonServiceBean;
+import org.slf4j.Logger;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -8,39 +13,52 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by PSTBB36 on 8/08/2016.
- */
+
 @Named
 @ConversationScoped
 public class BookService implements Serializable{
     @Inject @Isbn
     private transient NumberGenerator numberGenerator;
-    private ArrayList<String> items = new ArrayList<>();
-
+    @Inject
+    private PersonServiceBean ps;
+    private List<Person> people;
     @Inject
     private Conversation conv;
+    @Inject
+    private Logger logger;
+
+    @PostConstruct
+    public void initPeopleList(){
+        people = new ArrayList<>();
+    }
 
     public NumberGenerator getGenerator(){
         return numberGenerator;
     }
 
-    public List<String> getItems(){
-        return this.items;
+    public List<Person> getPeople(){
+        return this.people;
+    }
+
+    public List<Person> getSavedPeople(){
+        return ps.findAll();
     }
 
     public void start(){
+        logger.info("CONVERSATION STARTED");
         conv.begin();
-        System.out.println("Start");
     }
 
     public void end(){
+        for (Person p: people) {
+            ps.save(p);
+        }
         conv.end();
-        System.out.println("End");
     }
 
     public void add(){
-        items.add("Hola Pola!");
+        Person p = new Person("Willy", "Naesens");
+        people.add(p);
     }
 
 
