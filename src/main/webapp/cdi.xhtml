@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+    <head><title>Testytest</title></head>
+    <body>
+        <h1>Testytest</h1>
+
+        <ul>
+        <c:forEach var="item" items="#{bookService.items}">
+            <li>#{item}</li>
+        </c:forEach>
+        </ul>
+
+        <h:form>
+            <h:commandButton value="Start" action="#{bookService.start()}"/>
+            <h:commandButton value="Add" action="#{bookService.add()}"/>
+            <h:commandButton value="Stop" action="#{bookService.end()}"/>
+        </h:form>
+    </body>
+</html>
