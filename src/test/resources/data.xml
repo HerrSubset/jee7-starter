@@ -1,4 +1,16 @@
 <dataset>
     <person id="1000" firstName="John" lastName="Doe"/>
     <person id="2000" firstName="Jane" lastName="Doe"/>
+
+    <passenger firstName="Marcel" lastName="Debeuckeleire" ssn="10000" dateOfBirth="2001-01-28" type="OCCASIONAL"/>
+    <passenger firstName="Foo" lastName="Bar" ssn="20000" dateOfBirth="1999-01-15" type="OCCASIONAL"/>
+    <passenger firstName="Alain" lastName="Van Dam" ssn="30000" dateOfBirth="1998-05-13" type="OCCASIONAL"/>
+
+    <flight id="1000"/>
+    <domesticflight id="1000" airlineCompany="Brussels Airlines"/>
+    <flight id="2000"/>
+    <domesticflight id="2000" airlineCompany="Brussels Airlines"/>
+
+    <ticket id="1000" passenger_ssn="10000" passenger_lastName="Debeuckeleire" out_fk="1000" return_fk="2000"/>
+    <ticket id="2000" passenger_ssn="20000" passenger_lastName="Bar" out_fk="1000" return_fk="2000"/>
 </dataset>

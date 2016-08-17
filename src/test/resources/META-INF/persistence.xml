@@ -55,6 +55,13 @@
             Currently haven't found an elegant way around this.
          -->
         <class>com.realdolmen.course.domain.Person</class>
+        <class>com.realdolmen.course.domain.Passenger</class>
+        <class>com.realdolmen.course.domain.Ticket</class>
+        <class>com.realdolmen.course.domain.Flight</class>
+        <class>com.realdolmen.course.domain.DomesticFlight</class>
+        <class>com.realdolmen.course.domain.InternationalFlight</class>
+        <class>com.realdolmen.course.domain.Plane</class>
+        <class>com.realdolmen.course.domain.Airport</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
