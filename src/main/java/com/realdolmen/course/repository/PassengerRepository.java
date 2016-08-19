@@ -1,6 +1,7 @@
 package com.realdolmen.course.repository;
 
 import com.realdolmen.course.domain.Passenger;
+import com.realdolmen.course.domain.PassengerId;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,6 +32,11 @@ public class PassengerRepository {
     }
 
     public void delete(Passenger p) {
+        em.remove(p);
+    }
+
+    public void delete(PassengerId id) {
+        Passenger p = this.findById(id);
         em.remove(p);
     }
 }

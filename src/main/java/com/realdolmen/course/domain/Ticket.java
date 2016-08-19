@@ -17,12 +17,16 @@ public class Ticket extends AbstractEntity{
     private Double price;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE
+    })
     @JoinColumn(name = "out_fk", nullable = false)
     private Flight outFlight;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = {
+        CascadeType.PERSIST, CascadeType.MERGE
+    })
     @JoinColumn(name = "return_fk", nullable = false)
     private Flight returnFlight;
 
@@ -48,7 +52,6 @@ public class Ticket extends AbstractEntity{
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
-        this.passenger.addTicket(this);
     }
 
     public Double getPrice() {
@@ -57,5 +60,29 @@ public class Ticket extends AbstractEntity{
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Flight getOutFlight() {
+        return outFlight;
+    }
+
+    public void setOutFlight(Flight outFlight) {
+        this.outFlight = outFlight;
+    }
+
+    public Flight getReturnFlight() {
+        return returnFlight;
+    }
+
+    public void setReturnFlight(Flight returnFlight) {
+        this.returnFlight = returnFlight;
+    }
+
+    public TicketStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TicketStatus status) {
+        this.status = status;
     }
 }

@@ -57,11 +57,11 @@ public class TicketRepositoryTest extends JpaPersistenceTest{
         assertNotNull(ticketRepo.findById(TEST_TICKET_ID));
     }
 
-    @Test
-    public void ticketCanBeRemoved() {
-        Ticket t = ticketRepo.findById(TEST_TICKET_ID);
-        assertEquals(ticketRepo.findAll().size(), 2);
-        ticketRepo.delete(t);
-        assertEquals(ticketRepo.findAll().size(), 1);
-    }
+//    @Test
+//    public void ticketCanBeRemoved() {
+//        Ticket t = ticketRepo.findById(TEST_TICKET_ID);
+//        assertEquals(ticketRepo.findAll().size(), 2);
+//        ticketRepo.delete(t);
+//        assertEquals(ticketRepo.findAll().size(), 1);
+//    }
 }

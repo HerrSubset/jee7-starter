@@ -1,9 +1,10 @@
 package com.realdolmen.course.domain;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Address {
+public class Address implements Serializable {
     private String street1;
     private String street2;
     private String city;

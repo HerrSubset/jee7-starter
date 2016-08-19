@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
     @SecondaryTable(name="miles"),
         @SecondaryTable(name="picture")
 })
-public class Passenger {
+public class Passenger implements Serializable {
     @EmbeddedId @Valid
     private PassengerId id;
 
@@ -52,6 +53,10 @@ public class Passenger {
 
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<>();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_update")
+    private Date lastUpdate;
 
 
 
@@ -165,5 +170,15 @@ public class Passenger {
 
     public void addTicket(Ticket t) {
         tickets.add(t);
+    }
+
+    public void addCreditCard(CreditCard c) {
+        creditCard.add(c);
+    }
+
+    @PreUpdate
+    @PrePersist
+    public void updateDateLastUpdated() {
+        this.lastUpdate = new Date();
     }
 }
