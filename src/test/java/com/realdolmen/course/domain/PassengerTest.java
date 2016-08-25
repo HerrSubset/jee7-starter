@@ -38,7 +38,7 @@ public class PassengerTest extends JpaPersistenceTest {
     @Before
     public void setUp() {
         Calendar c = Calendar.getInstance();
-        c.set(2000, Calendar.JANUARY, 1);
+        c.set(2000, Calendar.JULY, 23);
         bd = c.getTime();
         c.set(2016, Calendar.MAY, 23);
         lf = c.getTime();
@@ -74,7 +74,7 @@ public class PassengerTest extends JpaPersistenceTest {
     public void ssnIsNotNull() {
         p.getId().setSsn(null);
         Set<ConstraintViolation<Passenger>> violations = validator.validate(p);
-        assertEquals(1, violations.size());
+        assertEquals(2, violations.size()); //may not be empty and may not be null
     }
 
     @Test
@@ -127,8 +127,15 @@ public class PassengerTest extends JpaPersistenceTest {
     }
 
     @Test
-    public void testSetCreditCard() {
+    public void testSetAccountNumber() {
+        entityManager().persist(p);
+        Passenger passenger = entityManager().find(Passenger.class, p.getId());
+        assertNull(passenger.getAccountNumber());
 
+        AccountNumber an = new AccountNumber(000L, 00000000L, 97L);
+        p.setAccountNumber(an);
+        passenger = entityManager().find(Passenger.class, p.getId());
+        assertNotNull(p.getAccountNumber());
     }
 
 

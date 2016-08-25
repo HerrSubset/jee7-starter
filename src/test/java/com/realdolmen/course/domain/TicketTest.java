@@ -52,13 +52,6 @@ public class TicketTest extends JpaPersistenceTest {
     }
 
     @Test
-    public void creatingTicketAddsItselfToPassenger() {
-        p.setTickets(new ArrayList<Ticket>());
-        t.setPassenger(p);
-        assertTrue(p.getTickets().contains(t));
-    }
-
-    @Test
     public void testSaveToDB() {
         entityManager().persist(p);
         entityManager().persist(t);

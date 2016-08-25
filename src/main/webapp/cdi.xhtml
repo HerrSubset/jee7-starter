@@ -11,8 +11,8 @@
         <h1>Testytest</h1>
         <h2>New People</h2>
         <ul>
-        <c:forEach var="p" items="#{bookService.people}">
-            <li>#{p.toString()}</li>
+        <c:forEach var="passenger" items="#{bookService.people}">
+            <li>#{passenger.toString()}</li>
         </c:forEach>
         </ul>
 
@@ -24,8 +24,8 @@
 
         <h2>Saved People</h2>
         <ul>
-            <c:forEach var="p" items="#{bookService.savedPeople}">
-                <li>#{p.toString()}</li>
+            <c:forEach var="passenger" items="#{bookService.savedPeople}">
+                <li>#{passenger.toString()}</li>
             </c:forEach>
         </ul>
     </body>

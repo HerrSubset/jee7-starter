@@ -1,5 +1,7 @@
 package com.realdolmen.course.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
@@ -10,10 +12,12 @@ import java.io.Serializable;
 public class PassengerId implements Serializable{
     @NotNull
     @Column(updatable = false)
+    @NotBlank
     private String ssn;
 
     @NotNull
     @Size(max=50)
+    @NotBlank
     private String lastName;
 
     public PassengerId() {
@@ -57,5 +61,13 @@ public class PassengerId implements Serializable{
         int result = ssn != null ? ssn.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PassengerId{" +
+                "ssn='" + ssn + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

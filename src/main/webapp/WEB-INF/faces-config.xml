@@ -6,5 +6,15 @@
               version="2.2">
 
 
-
+<application>
+    <locale-config>
+        <default-locale>en</default-locale>
+        <supported-locale>nl</supported-locale>
+    </locale-config>
+    <message-bundle>messages</message-bundle>
+    <resource-bundle>
+        <base-name>resources</base-name>
+        <var>res</var>
+    </resource-bundle>
+</application>
 </faces-config>

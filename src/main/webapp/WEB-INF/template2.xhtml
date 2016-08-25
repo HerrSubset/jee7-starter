@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en"
+      lang="#{languageSwitcher.language}">
+<f:view locale="#{languageSwitcher.locale}">
+<h:head>
+    <title><ui:insert name="pageTitle"/> - Airline Manager</title>
+    <h:outputStylesheet library="css" name="main.css"/>
+    <ui:insert name="metaData"/>
+</h:head>
+<h:body>
+    <div>
+        <h:form id="langauge_form">
+            <h:commandLink action="#{languageSwitcher.changeLanguage('nl')}" value="Nederlands" /> |
+            <h:commandLink action="#{languageSwitcher.changeLanguage('en')}" value="English" />
+        </h:form>
+        <h:graphicImage name="real_dolmen_logo.png" library="img"/>
+        <h1><ui:insert name="pageTitle"/></h1>
+    </div>
+    <div>
+        <ui:insert name="pageContent">
+            Place content here.
+        </ui:insert>
+    </div>
+    <p>Copyright RealDolmen. All Rights Reserved.</p>
+</h:body>
+</f:view>
+</html>

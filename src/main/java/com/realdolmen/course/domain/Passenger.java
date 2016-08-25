@@ -1,6 +1,8 @@
 package com.realdolmen.course.domain;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -8,6 +10,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,16 +21,17 @@ import java.util.List;
 })
 public class Passenger implements Serializable {
     @EmbeddedId @Valid
-    private PassengerId id;
+    private PassengerId id = new PassengerId();
 
-    @Size(max=50)
+    @Size(max=50) @NotBlank
     private String firstName;
 
     @Column(table="miles")
     private Integer frequentFlyerMiles;
 
-    @NotNull @Past @Temporal(TemporalType.DATE)
+    @NotNull @Temporal(TemporalType.DATE)
     @Column(updatable = false, nullable = false)
+    @Past
     private Date dateOfBirth;
 
     @Transient
@@ -35,9 +39,10 @@ public class Passenger implements Serializable {
 
     @NotNull @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PassengerType type;
+    private PassengerType type = PassengerType.OCCASIONAL;
 
-    @Past @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Past
     private Date lastFlight;
 
     @Column(table="picture")
@@ -57,6 +62,10 @@ public class Passenger implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update")
     private Date lastUpdate;
+
+    @Embedded
+    @Valid
+    private AccountNumber accountNumber;
 
 
 
@@ -100,6 +109,7 @@ public class Passenger implements Serializable {
     }
 
     public void setFirstName(String firstName) {
+        System.out.println("Setting first name to " + firstName);
         this.firstName = firstName;
     }
 
@@ -176,9 +186,41 @@ public class Passenger implements Serializable {
         creditCard.add(c);
     }
 
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public AccountNumber getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(AccountNumber accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     @PreUpdate
     @PrePersist
     public void updateDateLastUpdated() {
         this.lastUpdate = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", frequentFlyerMiles=" + frequentFlyerMiles +
+                ", dateOfBirth=" + dateOfBirth +
+                ", age=" + age +
+                ", type=" + type +
+                ", lastFlight=" + lastFlight +
+                ", picture=" + Arrays.toString(picture) +
+                ", address=" + address +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 }

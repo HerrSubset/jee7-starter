@@ -17,7 +17,7 @@
     <body>
         <div class="container">
             <h1>People data</h1>
-            <p>This page is rendered by a Servlet &amp; JSP.</p>
+            <passenger>This page is rendered by a Servlet &amp; JSP.</passenger>
             <table id="peopleTable" class="table table-striped">
                 <tr>
                     <th>Id</th>

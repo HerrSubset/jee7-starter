@@ -7,13 +7,19 @@ import com.realdolmen.course.repository.PassengerRepository;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class PassengerEJB implements  PassengerEJBRemote{
+@LocalBean
+public class PassengerEJB implements  PassengerEJBRemote, Serializable {
 
     @Inject
     PassengerRepository passengerRepo;
+
+    public PassengerEJB(){
+
+    }
 
     @Override
     public List<Passenger> findPassengers(){
